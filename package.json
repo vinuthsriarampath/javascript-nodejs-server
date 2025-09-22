@@ -1,0 +1,24 @@
+{
+  "name": "node-server-with-js",
+  "version": "1.0.0",
+  "description": "my first node server with javascript",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "node-with-javascript"
+  },
+  "author": "Vinuth Sri Arampath",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
