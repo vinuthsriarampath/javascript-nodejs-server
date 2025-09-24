@@ -7,6 +7,7 @@ import { swaggerMiddleware } from "./config/swagger.js";
 const app=express();
 
 app.use(express.json());
+
 app.use("/api",routes);
 
 app.use('/api-docs',...swaggerMiddleware)
