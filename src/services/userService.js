@@ -5,7 +5,7 @@ class UserService {
 
     async createUser(user) {
         const  createdUser = await userRepository.createUser(user);
-        return userResponseDTO(createdUser);
+        return createdUser;
     }
 
     async getUsers() {
