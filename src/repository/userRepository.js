@@ -2,7 +2,8 @@
 import AppError from "../exceptions/appError.js";
 // import pgPool from "../config/postgres.js";
 // import { connectMongo } from "../config/mongo.js";
-import prisma from "../config/prisma.js";
+// import prisma from "../config/prisma.js";
+import User from "../models/userModel.js";
 
 class UserRepository {
     // MySQL
@@ -68,9 +69,27 @@ class UserRepository {
     // }
 
     // Prisma (MySQL/PostgreSQL)
+    // async createUser(user) {
+    //     try {
+    //         return await prisma.user.create({ data: user });
+    //     } catch (error) {
+    //         throw new AppError(400, error.message);
+    //     }
+    // }
+
+    // async getUsers() {
+    //     try {
+    //         return await prisma.user.findMany();
+    //     } catch (error) {
+    //         throw new AppError(400, error.message);
+    //     }
+    // }
+
+    // Mongoose (MongoDB)
     async createUser(user) {
         try {
-            return await prisma.user.create({ data: user });
+            const createdUser = await User.create(user);
+            return createdUser;
         } catch (error) {
             throw new AppError(400, error.message);
         }
@@ -78,13 +97,11 @@ class UserRepository {
 
     async getUsers() {
         try {
-            return await prisma.user.findMany();
+            return await User.find();
         } catch (error) {
             throw new AppError(400, error.message);
         }
     }
-
-
 }
 
 export default new UserRepository();
