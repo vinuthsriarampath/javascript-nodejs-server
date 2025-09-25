@@ -1,9 +1,10 @@
 // import mySqlPool from "../config/mysql.js";
 import AppError from "../exceptions/appError.js";
 // import pgPool from "../config/postgres.js";
-import { connectMongo } from "../config/mongo.js";
+// import { connectMongo } from "../config/mongo.js";
+import prisma from "../config/prisma.js";
 
-class UserRepository{
+class UserRepository {
     // MySQL
     // async createUser(user) {
     //     try {
@@ -45,26 +46,44 @@ class UserRepository{
     // }
 
     // MongoDB
+    // async createUser(user) {
+    //     try {
+    //         const db = await connectMongo();
+    //         const result = await db.collection("users").insertOne(user);
+    //         console.info(result);
+    //         return { id: result.insertedId, ...user };
+    //     } catch (error) {
+    //         throw new AppError(400, error.message);
+    //     }
+    // }
+
+    // async getUsers() {
+    //     try {
+    //         const db = await connectMongo();
+    //         const users = await db.collection("users").find({}).toArray();
+    //         return users;
+    //     } catch (error) {
+    //         throw new AppError(400, error.message);
+    //     }
+    // }
+
+    // Prisma (MySQL/PostgreSQL)
     async createUser(user) {
         try {
-          const db = await connectMongo();
-          const result = await db.collection("users").insertOne(user);
-          console.info(result);
-          return { id: result.insertedId, ...user };
+            return await prisma.user.create({ data: user });
         } catch (error) {
-          throw new AppError(400, error.message);
+            throw new AppError(400, error.message);
         }
-      }
-    
-      async getUsers() {
+    }
+
+    async getUsers() {
         try {
-          const db = await connectMongo();
-          const users = await db.collection("users").find({}).toArray();
-          return users;
+            return await prisma.user.findMany();
         } catch (error) {
-          throw new AppError(400, error.message);
+            throw new AppError(400, error.message);
         }
-      }
+    }
+
 
 }
 

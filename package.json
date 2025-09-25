@@ -16,6 +16,7 @@
   "author": "Vinuth Sri Arampath",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^6.16.2",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "joi": "^18.0.1",
@@ -26,6 +27,7 @@
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "prisma": "^6.16.2"
   }
 }
